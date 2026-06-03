@@ -1,9 +1,3 @@
-'██████╗  ██████╗ ██╗  ██╗
-'██╔══██╗██╔═══██╗╚██╗██╔╝
-'██████╔╝██║   ██║ ╚███╔╝
-'██╔══██╗██║   ██║ ██╔██╗
-'██║  ██║╚██████╔╝██╔╝ ██╗
-'╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
 
 # 🔓 ROX
 
@@ -64,12 +58,9 @@ python rox.py secret.dat
 ## 📊 Example Output
 
 ```text
-🔍 Analyzing file...
+ 🔍Analyzing encrypted file SECRECT.DAT...
+     1. 🔑Encryption Key Recovered--->  #G0deiunduhfb4u8398393400344!
 
-✅ File Type : JPEG
-🔑 Key Found : 52 4F 58
-
-✔ Analysis Complete
 ```
 
 ---
