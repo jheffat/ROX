@@ -9,7 +9,7 @@
 ║                            ║
 ║  XOR Header Key Analyzer   ║
 ╚════════════════════════════╝
-Author: Icodexys | Version: 1.0.0 Copyright (c) 2026 | Contact: jheff.at@gmail.com
+Author: Jheff AT | Version: 1.0.0 Copyright (c) 2026 | Contact: jheff.at@gmail.com
 ```
 
 # 🔓 ROX
@@ -118,6 +118,6 @@ Use responsibly and only on data you are authorized to analyze.
 
 ## 👨‍💻 Author
 
-**Icodexys**
+**Jheff AT**
 
 🐍 Python • 🐧 Linux • 🛡️ Cybersecurity • 🏗️ Infrastructure Engineering
