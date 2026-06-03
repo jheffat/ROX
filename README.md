@@ -1,3 +1,10 @@
+██████╗  ██████╗ ██╗  ██╗
+██╔══██╗██╔═══██╗╚██╗██╔╝
+██████╔╝██║   ██║ ╚███╔╝
+██╔══██╗██║   ██║ ██╔██╗
+██║  ██║╚██████╔╝██╔╝ ██╗
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
+
 # 🔓 ROX
 
 **XOR Key Recovery Tool**
@@ -9,7 +16,6 @@ ROX is a Python command-line utility that recovers XOR encryption keys using kno
 ## ✨ Features
 
 * 🔑 Recover XOR encryption keys
-* 📂 Detect common file formats
 * ⚡ Fast header analysis
 * 🧩 Signature-based detection
 * 🖥️ Simple command-line interface
@@ -28,6 +34,7 @@ ROX is a Python command-line utility that recovers XOR encryption keys using kno
 * 🎵 MP3
 * 🖼️ BMP
 * 🔊 WAV
+* + More...
 
 ---
 
