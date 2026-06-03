@@ -2,7 +2,7 @@
 """
 ROX - XOR Header Key Analyzer
 
-Author: Icodexys
+Author: Jheff AT
 Version: 1.0.0
 
 Educational cryptanalysis utility that attempts to recover
@@ -22,7 +22,7 @@ import string
 from glob import glob
 from sys import argv
 
-__author__ = "Icodexys"
+__author__ = "Jheff AT"
 __version__ = "1.0.0"
 __email__ = "jheff.at@gmail.com"
 
@@ -37,7 +37,7 @@ def banner():
         ║                            ║
         ║  XOR Header Key Analyzer   ║
         ╚════════════════════════════╝""")
-    print("\nAuthor: Icodexys" + " | Version: " + __version__ + " Copyright (c) 2026 | Contact: " + __email__  + "\n")
+    print("\nAuthor: Jheff AT" + " | Version: " + __version__ + " Copyright (c) 2026 | Contact: " + __email__  + "\n")
     print("This tool attempts to recover XOR keys by analyzing the first 50")
     print("bytes of files against a dictionary of potential keys." )
     print("\nUsage: rox <file_pattern>")
