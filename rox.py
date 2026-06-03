@@ -45,30 +45,30 @@ def banner():
                 rox *.jpg
                 rox *.*
                 rox videoclip.mp4\n""")
-def crackxor(filex):
+def rox(filex):
     dic=string.ascii_letters+string.digits+"!@#$%^&*()_+-=~`[]{}|;:'\",.<>/? "
     g=""
     d=open(filex,"rb").read(50)
     dik=open("dict.bin","rb") 
     lx=[] 
     for k  in dik:
-        cracked=''
+        keymatched=''
         for c ,s in zip(d,k):
             g=chr(c^s)
             if g in dic:
-                cracked+=g    
+                keymatched+=g    
         
-        needle=cracked[0:5]
-        if cracked.count(needle) > 1:
+        needle=keymatched[0:5]
+        if keymatched.count(needle) > 1:
             positions = []
             start = 0
             while True:
-                idx = cracked.find(needle, start)
+                idx = keymatched.find(needle, start)
                 if idx == -1:
                     break
                 positions.append(idx)
                 start = idx + 1          
-            lx.append(f"🔑Encryption Key Recovered--->  {cracked[0:positions[1]]}" )     
+            lx.append(f"🔑Encryption Key Recovered--->  {keymatched[0:positions[1]]}" )     
     return lx
 def main():
     if glob("dict.bin")==0:
@@ -83,8 +83,8 @@ def main():
         banner()
         for i in l:
             print(f" 🔍Analyzing encrypted file {i.upper()}...")
-            sex=crackxor(i)       
-            print("\n".join(f"     {i}. {item}" for i, item in enumerate(sex, 1)) if sex else "       -No matches found.")
+            result=rox(i)       
+            print("\n".join(f"     {i}. {item}" for i, item in enumerate(result, 1)) if result else "       -No matches found.")
     else:
         banner()
 
