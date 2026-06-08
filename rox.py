@@ -21,6 +21,7 @@ type is unknown.
 import string
 from glob import glob
 from sys import argv
+from base64 import b64encode
 
 __author__ = "Jheff AT"
 __version__ = "1.0.0"
@@ -46,53 +47,69 @@ def banner():
                 rox *.*
                 rox videoclip.mp4\n""")
 def rox(filename):
-    chars=string.ascii_letters+string.digits+"!@#$%^&*()_+-=~`[]{}|;:'\",.<>/? "
-    key="";keys=[] 
-    data=open(filename,"rb").read(50)
+    keys=[] 
+    encrypted_headers=open(filename,"rb").read(50)
     datadict=open("dict.bin","rb") 
-    
-    for header in datadict:
-        keymatched=''
-        for e,d in zip(data,header):
-            key=chr(e^d)
-            if key in chars:
-                keymatched+=key    
-        
-        needle=keymatched[0:5]
-        if keymatched.count(needle) > 1:
-            pos= []
-            start = 0
-            while True:
-                idx = keymatched.find(needle, start)
-                if idx == -1:
-                    break
-                pos.append(idx)
-                start = idx + 1          
-            keys.append(f"🔑Encryption Key Recovered--->  {keymatched[0:pos[1]]}" )     
+    # Read the dictionary file in chunks of 50 bytes to match the length of the encrypted header
+    for know_header in datadict:
+        # Generate a candidate key by XORing each byte of the encrypted header with the corresponding byte of the known header   
+        candidate_key=bytes(e^d for e,d in zip(encrypted_headers,know_header))   
+        # Check if all bytes in the candidate key are printable ASCII characters  
+        if all(chr(b).isprintable() for b in candidate_key) and len(candidate_key) > 0:
+            # Look for repeated patterns in the candidate key to identify potential keys
+            needle=candidate_key[0:5]
+            if candidate_key.count(needle) > 1:
+                pos= []
+                start = 0
+                while True:
+                    idx = candidate_key.find(needle, start)
+                    if idx == -1:
+                        break
+                    pos.append(idx)
+                    start = idx + 1         
+                gotkey=candidate_key[0:pos[1]]    
+                # XOR the encrypted header with the candidate key to see if it matches the known header
+                if bytes(e^k for e,k in zip(encrypted_headers,gotkey))==know_header[0:len(gotkey)]:
+                    # Format the candidate key in hexadecimal, base64, and ASCII representations for output
+                    hex_key=" ".join(f"{b:02X}" for b in gotkey)
+                    keys.append({"base64": str(b64encode(gotkey)),"ascii": gotkey,"hex": hex_key,"len": len(gotkey)})   
     return keys
 def main():
+    # Check if 'dict.bin' exists in the current directory before proceeding
     if glob("dict.bin")==0:
         print("\n❌Error: 'dict.bin' not found. Please ensure it is in the same directory as this script.")
         exit(1)
     getarg=argv
     if len(getarg)==2:
-        l=glob(getarg[1])
+        l=glob(getarg[1])# Use glob to find files matching the provided pattern
         if len(l)==0:
             banner()
             exit("\n❌Error: No files found matching the pattern.")
         banner()
+        # Analyze each file found and print the results in a formatted manner
         for i in l:
-            print("\n" + "-"*80 + "\n")
+            print("-"*80)
             print(f" 🔍Analyzing encrypted file {i.upper()}...")
-            result=rox(i)       
-            print("\n".join(f"     {i}. {item}" for i, item in enumerate(result, 1)) if result else "       -No matches found.")
-            print("\n" + "-"*80 + "\n")
+            result=rox(i)             
+            # Print the candidate keys found for the current file in a structured format, or indicate if no matches were found
+            print(
+            "\n".join(
+                        f"     {i}.Candidate Key\n         HEX    : {item['hex']} \n         Base64 : {item['base64']}\n         ASCII  : {item['ascii'].decode('utf-8')} \n         Length : {item['len']} Bytes"
+                        for i, item in enumerate(result, 1)
+                         )
+                        if result
+                        else "       - No matches found.")
+                    
+            print("-"*80 + "\n")
         print("[📄] Analysis complete.\n")
     else:
-        banner()
+        banner()                                 
 
         
 
+if __name__ == "__main__":   
+    main()
+    
 if __name__ == "__main__":    
     main()
     
