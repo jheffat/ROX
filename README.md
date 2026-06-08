@@ -96,8 +96,16 @@ python rox.py secret.dat
 ## 📊 Example Output
 
 ```text
- 🔍Analyzing encrypted file SECRECT.DAT...
-     1. 🔑Encryption Key Recovered--->  #G0deiunduhfb4u8398393400344!
+ --------------------------------------------------------------------------------
+ 🔍Analyzing encrypted file BIN.TEST...
+     ✅Candidate Key #1
+         🔢HEX    : 23 47 30 64 65 69 75 6E 64 75 68 66 62 34 75 38 33 39 38 33 39 33 34 30 30 33 34 34 21 
+         📦Base64 : b'I0cwZGVpdW5kdWhmYjR1ODM5ODM5MzQwMDM0NCE='
+         🔤ASCII  : #G0deiunduhfb4u8398393400344! 
+         📏Length : 29 Bytes
+--------------------------------------------------------------------------------
+
+[📄] Analysis complete.
 
 ```
 
