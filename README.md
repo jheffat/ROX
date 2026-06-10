@@ -82,7 +82,7 @@ cd rox
 ## 💻 Usage
 
 ```bash
-python rox.py encrypted_file.bin
+python rox.py secret.dat
 ```
 
 Example:
@@ -97,7 +97,7 @@ python rox.py secret.dat
 
 ```text
  --------------------------------------------------------------------------------
- 🔍Analyzing encrypted file BIN.TEST...
+ 🔍Analyzing encrypted file secret.dat...
      ✅Candidate Key #1
          🔢HEX    : 23 47 30 64 65 69 75 6E 64 75 68 66 62 34 75 38 33 39 38 33 39 33 34 30 30 33 34 34 21 
          📦Base64 : b'I0cwZGVpdW5kdWhmYjR1ODM5ODM5MzQwMDM0NCE='
