@@ -18,7 +18,6 @@ with a single-byte XOR cipher, especially when the original file
 type is unknown.        
 
 """
-import string
 from glob import glob
 from sys import argv
 from base64 import b64encode
@@ -77,12 +76,11 @@ def rox(filename):
 def main():
     # Check if 'dict.bin' exists in the current directory before proceeding
     if glob("dict.bin")==0:
-        print("\n❌Error: 'dict.bin' not found. Please ensure it is in the same directory as this script.")
-        exit(1)
+        exit("\n❌Error: 'dict.bin' not found. Please ensure it is in the same directory as this script.")
     getarg=argv
     if len(getarg)==2:
-        l=glob(getarg[1])# Use glob to find files matching the provided pattern
-        if len(l)==0:
+        list_files=glob(getarg[1])# Use glob to find files matching the provided pattern
+        if len(list_files)==0:
             banner()
             exit("\n❌Error: No files found matching the pattern.")
         banner()
@@ -94,7 +92,7 @@ def main():
             # Print the candidate keys found for the current file in a structured format, or indicate if no matches were found
             print(
             "\n".join(
-                        f"     {i}.Candidate Key\n         HEX    : {item['hex']} \n         Base64 : {item['base64']}\n         ASCII  : {item['ascii'].decode('utf-8')} \n         Length : {item['len']} Bytes"
+                        f"     ✅Candidate Key #{i}\n         🔢HEX    : {item['hex']} \n         📦Base64 : {item['base64']}\n         🔤ASCII  : {item['ascii'].decode('utf-8')} \n         📏Length : {item['len']} Bytes"
                         for i, item in enumerate(result, 1)
                          )
                         if result
@@ -108,8 +106,5 @@ def main():
         
 
 if __name__ == "__main__":   
-    main()
-    
-if __name__ == "__main__":    
     main()
     
