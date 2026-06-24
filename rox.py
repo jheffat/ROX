@@ -85,7 +85,7 @@ def main():
             exit("\n❌Error: No files found matching the pattern.")
         banner()
         # Analyze each file found and print the results in a formatted manner
-        for i in l:
+        for i in list_files:
             print("-"*80)
             print(f" 🔍Analyzing encrypted file {i.upper()}...")
             result=rox(i)             
